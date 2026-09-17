@@ -2,4 +2,5 @@ notes
 - new line added
 fish
 tiger
-server region: mumbai
+server region: mumbai (primary)
+server region: delhi (backup)
