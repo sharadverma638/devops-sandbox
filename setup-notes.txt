@@ -1,0 +1,9 @@
+notes
+- new line added
+fish
+tiger
+server region: mumbai (primary)
+server region: delhi (backup)
+half-done feature work
+happy
+happybroken do not use
