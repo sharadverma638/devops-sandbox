@@ -1,0 +1,832 @@
+<!--  :O   CODE GENERATED USING CHATGPT   :)  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Libra — Modern Library</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  --bg: #f7f7f2;
+  --card: #ffffff;
+  --text: #20251f;
+  --muted: #777d73;
+  --green: #315d45;
+  --lime: #d8f36a;
+  --border: #e8e9e1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.container {
+  max-width: 1240px;
+  width: 90%;
+  margin: auto;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+
+.logo span { color: var(--green); }
+
+.beta {
+  font-size: 10px;
+  letter-spacing: 1px;
+  background: var(--lime);
+  padding: 6px 10px;
+  border-radius: 30px;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 14px;
+  transition: .25s;
+}
+
+.nav-links a:hover { color: var(--green); }
+
+.nav-btn, .primary-btn {
+  border: none;
+  background: var(--green);
+  color: white;
+  border-radius: 40px;
+  padding: 13px 21px;
+  transition: .3s;
+}
+
+.nav-btn:hover, .primary-btn:hover {
+  background: #203e2d;
+  transform: translateY(-2px);
+}
+
+/* HERO */
+.hero {
+  background: var(--green);
+  border-radius: 32px;
+  padding: 65px;
+  color: white;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 35px;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  animation: fadeUp .8s ease both;
+}
+
+.eyebrow {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--lime);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 12px var(--lime);
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 5vw, 67px);
+  line-height: 1.1;
+  letter-spacing: -2px;
+  font-weight: 500;
+}
+
+h1 em {
+  color: var(--lime);
+  font-weight: 500;
+}
+
+.hero p {
+  color: #d5e0d6;
+  line-height: 1.8;
+  margin: 23px 0 30px;
+  max-width: 440px;
+  font-size: 15px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero .primary-btn {
+  background: var(--lime);
+  color: #203e2d;
+  font-weight: 700;
+}
+
+.secondary-btn {
+  border: 1px solid #78907d;
+  border-radius: 40px;
+  background: transparent;
+  color: white;
+  padding: 13px 21px;
+}
+
+.secondary-btn:hover { background: #ffffff15; }
+
+/* HERO ART */
+.hero-art {
+  min-height: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.orbit {
+  width: 310px;
+  height: 310px;
+  border: 1px solid #ffffff35;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  animation: float 5s ease-in-out infinite;
+}
+
+.orbit::before, .orbit::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #ffffff20;
+  border-radius: 50%;
+}
+
+.orbit::before { width: 240px; height: 240px; }
+.orbit::after { width: 370px; height: 370px; }
+
+.book-emoji {
+  font-size: 120px;
+  filter: drop-shadow(0 20px 18px #0003);
+  transform: rotate(-9deg);
+  z-index: 1;
+}
+
+.floating-tag {
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  background: white;
+  color: var(--text);
+  border-radius: 18px;
+  padding: 14px 18px;
+  font-size: 12px;
+  box-shadow: 0 12px 35px #0002;
+}
+
+.floating-tag strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 25px 0 75px;
+}
+
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 23px;
+  transition: .3s;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px #243b2510;
+}
+
+.stat strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 29px;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* SECTION */
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.view-all {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* SEARCH AND FILTERS */
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.search {
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 40px;
+  padding: 14px 20px;
+  outline: none;
+}
+
+.search:focus { border-color: var(--green); }
+
+.filter {
+  border: 1px solid var(--border);
+  background: white;
+  padding: 12px 18px;
+  border-radius: 40px;
+  color: var(--muted);
+  transition: .25s;
+}
+
+.filter.active, .filter:hover {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+
+/* BOOK GRID */
+.books {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 85px;
+}
+
+.book-card {
+  background: white;
+  padding: 12px;
+  border-radius: 25px;
+  border: 1px solid var(--border);
+  transition: transform .35s, box-shadow .35s;
+  animation: fadeUp .6s ease both;
+}
+
+.book-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 38px #203e2d12;
+}
+
+.cover {
+  height: 235px;
+  border-radius: 17px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid #ffffff55;
+  border-radius: 50%;
+  transition: transform .5s;
+}
+
+.book-card:hover .cover::before { transform: scale(1.25); }
+
+.cover-icon {
+  font-size: 72px;
+  filter: drop-shadow(0 12px 10px #0002);
+  transition: transform .35s;
+  z-index: 1;
+}
+
+.book-card:hover .cover-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.cover-1 { background: #e9c9a7; }
+.cover-2 { background: #c2d5bc; }
+.cover-3 { background: #d8c9e9; }
+.cover-4 { background: #efc3c1; }
+.cover-5 { background: #e6dfaa; }
+.cover-6 { background: #c3d9e8; }
+.cover-7 { background: #e4c9dc; }
+.cover-8 { background: #c5d8c9; }
+
+.book-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 10px;
+  background: #ffffffd9;
+  padding: 7px 10px;
+  border-radius: 30px;
+}
+
+.book-info { padding: 15px 6px 7px; }
+
+.book-info small {
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.book-info h3 {
+  font-size: 16px;
+  margin: 8px 0 5px;
+}
+
+.author {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.book-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 17px;
+}
+
+.rating { font-size: 12px; }
+
+.book-bottom button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #edf1e8;
+  color: var(--green);
+  font-size: 20px;
+  transition: .25s;
+}
+
+.book-bottom button:hover {
+  background: var(--green);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.empty {
+  display: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--muted);
+}
+
+/* BOTTOM BANNER */
+.join {
+  background: #e9eddf;
+  padding: 45px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 75px;
+}
+
+.join h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.join p {
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 27px 0;
+  color: var(--muted);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@media (max-width: 900px) {
+  .hero { padding: 40px; }
+  .hero-art { min-height: 270px; }
+  .orbit { transform: scale(.8); }
+  .books { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cover { height: 220px; }
+}
+
+@media (max-width: 600px) {
+  .container { width: 92%; }
+  nav { padding: 18px 0; flex-wrap: wrap; }
+  .nav-links { order: 3; width: 100%; justify-content: space-between; gap: 10px; }
+  .nav-btn { padding: 10px 14px; font-size: 12px; }
+  .hero { grid-template-columns: 1fr; padding: 30px 24px; border-radius: 25px; }
+  h1 { font-size: 45px; }
+  .hero-art { min-height: 250px; }
+  .orbit { transform: scale(.75); }
+  .stats { gap: 8px; margin-bottom: 55px; }
+  .stat { padding: 15px 10px; border-radius: 16px; }
+  .stat strong { font-size: 23px; }
+  .stat span { font-size: 11px; }
+  .section-heading h2 { font-size: 29px; }
+  .section-heading { align-items: start; }
+  .books { gap: 12px; }
+  .cover { height: 175px; }
+  .cover-icon { font-size: 55px; }
+  .book-info h3 { font-size: 14px; }
+  .join { padding: 28px 23px; flex-direction: column; align-items: start; }
+  .join h2 { font-size: 28px; }
+  footer { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <nav>
+    <div class="logo">libra<span>.</span><span class="beta">BETA WEBSITE</span></div>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#books">Explore Books</a>
+      <a href="#membership">Membership</a>
+    </div>
+
+    <button class="nav-btn" onclick="document.querySelector('#books').scrollIntoView({behavior:'smooth'})">
+      Explore library ↗
+    </button>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Your next chapter starts here</div>
+
+        <h1>A little more<br>reading. A lot<br>more <em>living.</em></h1>
+
+        <p>
+          Discover your next favourite book in a calm, welcoming space
+          built for curious minds and lifelong learners.
+        </p>
+
+        <div class="hero-actions">
+          <button class="primary-btn" onclick="document.querySelector('#books').scrollIntoView({behavior:'smooth'})">
+            Explore books ↗
+          </button>
+          <button class="secondary-btn" onclick="document.querySelector('#membership').scrollIntoView({behavior:'smooth'})">
+            Our community
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="orbit">
+          <div class="book-emoji">📚</div>
+        </div>
+        <div class="floating-tag">
+          <strong>1,200+</strong>
+          stories to discover
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Library statistics">
+      <div class="stat">
+        <strong>1.2k+</strong>
+        <span>Books to explore</span>
+      </div>
+      <div class="stat">
+        <strong>850+</strong>
+        <span>Happy readers</span>
+      </div>
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>Love for reading</span>
+      </div>
+    </section>
+
+    <section id="books">
+      <div class="section-heading">
+        <div>
+          <h2>Find your next read.</h2>
+          <p>Handpicked stories for every kind of mind.</p>
+        </div>
+        <a class="view-all" href="#books" onclick="resetFilters()">View all books ↗</a>
+      </div>
+
+      <div class="toolbar">
+        <input class="search" id="search" type="search"
+               placeholder="Search books or authors..." aria-label="Search books">
+
+        <button class="filter active" data-category="all">All books</button>
+        <button class="filter" data-category="fiction">Fiction</button>
+        <button class="filter" data-category="self-help">Self-growth</button>
+        <button class="filter" data-category="business">Business</button>
+      </div>
+
+      <div class="books" id="bookGrid">
+
+        <article class="book-card" data-category="fiction" data-search="the alchemist paulo coelho journey">
+          <div class="cover cover-1">
+            <span class="book-tag">Bestseller</span>
+            <span class="cover-icon">🏜️</span>
+          </div>
+          <div class="book-info">
+            <small>Fiction</small>
+            <h3>The Alchemist</h3>
+            <p class="author">Paulo Coelho</p>
+            <div class="book-bottom">
+              <span class="rating">⭐ 4.8</span>
+              <button aria-label="View The Alchemist" onclick="bookInfo('The Alchemist')">↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="book-card" data-category="self-help" data-search="atomic habits james clear habits">
+          <div class="cover cover-2">
+            <span class="book-tag">Popular</span>
+            <span class="cover-icon">🌱</span>
+          </div>
+          <div class="book-info">
+            <small>Self-growth</small>
+            <h3>Atomic Habits</h3>
+            <p class="author">James Clear</p>
+            <div class="book-bottom">
+              <span class="rating">⭐ 4.9</span>
+              <button aria-label="View Atomic Habits" onclick="bookInfo('Atomic Habits')">↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="book-card" data-category="fiction" data-search="ikigai hector garcia francesc miralles life">
+          <div class="cover cover-3">
+            <span class="book-tag">Reader's pick</span>
+            <span class="cover-icon">🌸</span>
+          </div>
+          <div class="book-info">
+            <small>Fiction</small>
+            <h3>Ikigai</h3>
+            <p class="author">Héctor García</p>
+            <div class="book-bottom">
+              <span class="rating">⭐ 4.7</span>
+              <button aria-label="View Ikigai" onclick="bookInfo('Ikigai')">↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="book-card" data-category="business" data-search="zero to one peter thiel startups business">
+          <div class="cover cover-4">
+            <span class="book-tag">Editor's pick</span>
+            <span class="cover-icon">🚀</span>
+          </div>
+          <div class="book-info">
+            <small>Business</small>
+            <h3>Zero to One</h3>
+            <p class="author">Peter Thiel</p>
+            <div class="book-bottom">
+              <span class="rating">⭐ 4.6</span>
+              <button aria-label="View Zero to One" onclick="bookInfo('Zero to One')">↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="book-card" data-category="self-help" data-search="deep work cal newport focus">
+          <div class="cover cover-5">
+            <span class="cover-icon">🧠</span>
+          </div>
+          <div class="book-info">
+            <small>Self-growth</small>
+            <h3>Deep Work</h3>
+            <p class="author">Cal Newport</p>
+            <div class="book-bottom">
+              <span class="rating">⭐ 4.8</span>
+              <button aria-label="View Deep Work" onclick="bookInfo('Deep Work')">↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="book-card" data-category="business" data-search="psychology of money morgan housel finance">
+          <div class="cover cover-6">
+            <span class="cover-icon">💡</span>
+          </div>
+          <div class="book-info">
+            <small>Business</small>
+            <h3>The Psychology of Money</h3>
+            <p class="author">Morgan Housel</p>
+            <div class="book-bottom">
+              <span class="rating">⭐ 4.9</span>
+              <button aria-label="View The Psychology of Money" onclick="bookInfo('The Psychology of Money')">↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="book-card" data-category="fiction" data-search="the little prince antoine saint exupery">
+          <div class="cover cover-7">
+            <span class="cover-icon">🌙</span>
+          </div>
+          <div class="book-info">
+            <small>Fiction</small>
+            <h3>The Little Prince</h3>
+            <p class="author">Antoine de Saint-Exupéry</p>
+            <div class="book-bottom">
+              <span class="rating">⭐ 4.8</span>
+              <button aria-label="View The Little Prince" onclick="bookInfo('The Little Prince')">↗</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="book-card" data-category="self-help" data-search="think like a monk jay shetty mindfulness">
+          <div class="cover cover-8">
+            <span class="cover-icon">🪷</span>
+          </div>
+          <div class="book-info">
+            <small>Self-growth</small>
+            <h3>Think Like a Monk</h3>
+            <p class="author">Jay Shetty</p>
+            <div class="book-bottom">
+              <span class="rating">⭐ 4.7</span>
+              <button aria-label="View Think Like a Monk" onclick="bookInfo('Think Like a Monk')">↗</button>
+            </div>
+          </div>
+        </article>
+
+        <div class="empty" id="empty">No books found. Try another search. 📚</div>
+      </div>
+    </section>
+
+    <section class="join" id="membership">
+      <div>
+        <div class="eyebrow" style="color:var(--green);margin-bottom:12px">
+          <span class="dot" style="background:var(--green)"></span>
+          A community of curious minds
+        </div>
+        <h2>Make room for a new story.</h2>
+        <p>Join our demo community and make reading a part of your everyday life.</p>
+      </div>
+      <button class="primary-btn" onclick="alert('Welcome to the Libra demo! Membership registration is coming soon.')">
+        Join the community ↗
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <div class="logo">libra<span>.</span> <span class="beta">BETA</span></div>
+    <p>Made for readers, dreamers & lifelong learners.</p>
+    <p>© 2026 Libra Demo</p>
+  </footer>
+
+</div>
+
+<script>
+const search = document.getElementById('search');
+const cards = [...document.querySelectorAll('.book-card')];
+const filters = [...document.querySelectorAll('.filter')];
+const empty = document.getElementById('empty');
+
+let category = 'all';
+
+function updateBooks() {
+  const query = search.value.toLowerCase().trim();
+  let visible = 0;
+
+  cards.forEach(card => {
+    const matchesCategory =
+      category === 'all' || card.dataset.category === category;
+    const matchesSearch =
+      card.dataset.search.includes(query);
+
+    const show = matchesCategory && matchesSearch;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+
+  empty.style.display = visible ? 'none' : 'block';
+}
+
+filters.forEach(button => {
+  button.addEventListener('click', () => {
+    filters.forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+    category = button.dataset.category;
+    updateBooks();
+  });
+});
+
+search.addEventListener('input', updateBooks);
+
+function resetFilters() {
+  category = 'all';
+  search.value = '';
+  filters.forEach(item => item.classList.remove('active'));
+  filters[0].classList.add('active');
+  updateBooks();
+}
+
+function bookInfo(title) {
+  alert(title + '\n\nThis is a library website demo. Book details and borrowing will be available in a future version.');
+}
+</script>
+</body>
+</html>
