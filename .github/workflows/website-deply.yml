@@ -22,19 +22,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v6
 
       - name: Setup GitHub Pages Configuration
         id: pages
-        uses: actions/configure-pages@v7
+        uses: actions/configure-pages@v6
         with:
           enablement: true
 
       - name: Upload Artifacts
-        uses: actions/upload-pages-artifact@v7
+        uses: actions/upload-pages-artifact@v6
         with:
           path: '.' # Location of your static files
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v7
+        uses: actions/deploy-pages@v6
