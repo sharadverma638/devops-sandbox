@@ -8,13 +8,11 @@ on:
 
     
 jobs:
-
   greet:
     runs-on: ubuntu-latest
     steps:
       - name: say hello
-        run: echo "hello bro, first workflow run successfully."
-        
+        run: echo "hello bro, first workflow run successfully."   
   repo-name:
     runs-on: ubuntu-latest
     steps:
