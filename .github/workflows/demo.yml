@@ -14,6 +14,7 @@ jobs:
       - name: say hello
         run: echo "hello bro, first workflow run successfully."   
   repo-name:
+    needs: greet
     runs-on: ubuntu-latest
     steps:
       - name: show repo name
