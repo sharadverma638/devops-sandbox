@@ -1,3 +1,4 @@
+name: Chat
 body:
   - type: textarea
     id: chat_message
