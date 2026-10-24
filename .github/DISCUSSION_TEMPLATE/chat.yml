@@ -1,0 +1,8 @@
+body:
+  - type: textarea
+    id: chat_message
+    attributes:
+      label: Send a message
+      placeholder: Type something...
+    validations:
+      required: true
