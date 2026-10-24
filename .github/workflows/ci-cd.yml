@@ -12,25 +12,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: code
-      run: echo "code cloned"  
+        run: echo "code cloned"  
  
   build:
     needs: code
     runs-on: ubuntu-latest
     steps:
       - name: build
-      run: echo "built done"
+        run: echo "built done"
       
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: test
-      run: echo "secure and tested"
+        run: echo "secure and tested"
   
   deploy:
     needs: [code,build,test]
     runs-on: ubuntu-latest
     steps:
       - name: deploy
-      run: echo "deployed succesfully"
+        run: echo "deployed succesfully"
