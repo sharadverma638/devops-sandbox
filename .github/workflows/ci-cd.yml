@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: code
-        run: echo "code cloned"  
+        uses: actions/checkout@v7  
  
   build:
     needs: code
     runs-on: ubuntu-latest
     steps:
       - name: build
-        run: echo "built done"
+        uses: docker/setup-buildx-action@v3
       
   test:
     needs: build
