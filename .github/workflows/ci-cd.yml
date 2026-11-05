@@ -9,28 +9,28 @@ on:
 jobs:
 
   code:
-    runs-on: self-hosted
+    runs-on: [self-hosted, linux]
     steps:
       - name: code
         uses: actions/checkout@v7  
  
   build:
     needs: code
-    runs-on: self-hosted
+    runs-on: [self-hosted, linux]
     steps:
       - name: build
         uses: docker/setup-buildx-action@v3
       
   test:
     needs: build
-    runs-on: self-hosted
+    runs-on: [self-hosted, linux]
     steps:
       - name: test
         run: echo "secure and tested"
   
   deploy:
     needs: [code,build,test]
-    runs-on: self-hosted
+    runs-on: [self-hosted, linux]
     steps:
       - name: deploy
         run: echo "deployed succesfully"
