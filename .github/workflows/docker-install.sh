@@ -1,0 +1,62 @@
+name: Install Docker on Server
+
+on:
+  workflow_dispatch:   # run manually from the Actions tab
+
+jobs:
+  install-docker:
+    runs-on: self-hosted   # or [self-hosted, linux, x64]
+
+    steps:
+      - name: Check if Docker is already installed
+        id: check
+        run: |
+          if command -v docker >/dev/null 2>&1; then
+            echo "installed=true" >> "$GITHUB_OUTPUT"
+            docker --version
+          else
+            echo "installed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Remove old/conflicting packages
+        if: steps.check.outputs.installed == 'false'
+        run: |
+          for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do
+            sudo apt-get remove -y $pkg || true
+          done
+
+      - name: Install prerequisites
+        if: steps.check.outputs.installed == 'false'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates curl gnupg
+
+      - name: Add Docker's official GPG key and repository
+        if: steps.check.outputs.installed == 'false'
+        run: |
+          . /etc/os-release
+          sudo install -m 0755 -d /etc/apt/keyrings
+          sudo curl -fsSL https://download.docker.com/linux/${ID}/gpg -o /etc/apt/keyrings/docker.asc
+          sudo chmod a+r /etc/apt/keyrings/docker.asc
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/${ID} ${VERSION_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+      - name: Install Docker Engine
+        if: steps.check.outputs.installed == 'false'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+      - name: Enable and start Docker
+        run: |
+          sudo systemctl enable docker
+          sudo systemctl start docker
+
+      - name: Add runner user to docker group
+        run: |
+          sudo usermod -aG docker "$USER"
+
+      - name: Verify installation
+        run: |
+          sudo docker --version
+          sudo docker compose version
+          sudo docker run --rm hello-world
