@@ -1,3 +1,5 @@
+# Goal: Install the docker in self-hosted runner.
+
 name: Install Docker on Server
 
 on:

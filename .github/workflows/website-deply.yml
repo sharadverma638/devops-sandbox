@@ -1,3 +1,6 @@
+# Goal: Deploy a static site to GitHub Pages.
+
+
 name: Deploy Static Site
 
 on:
