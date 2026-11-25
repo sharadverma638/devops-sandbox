@@ -1,0 +1,54 @@
+
+name: Search All Repositories for Carrd Link
+
+on:
+  workflow_dispatch:
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Search all repositories
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          TARGET="https://sharadverma.carrd.co"
+
+          echo "Searching all repositories for: $TARGET"
+
+          gh repo list --limit 1000 --json nameWithOwner \
+            --jq '.[].nameWithOwner' > repos.txt
+
+          FOUND=0
+
+          while IFS= read -r REPO; do
+            echo ""
+            echo "Scanning: $REPO"
+
+            RESULT=$(gh api \
+              -H "Accept: application/vnd.github+json" \
+              "/repos/$REPO/git/trees/HEAD?recursive=1" \
+              --jq '.tree[] | select(.type == "blob") | .path' \
+              2>/dev/null || true)
+
+            while IFS= read -r FILE; do
+              [ -z "$FILE" ] && continue
+
+              CONTENT=$(gh api \
+                "/repos/$REPO/contents/$FILE" \
+                -H "Accept: application/vnd.github.raw" \
+                2>/dev/null || true)
+
+              if printf '%s' "$CONTENT" | grep -Fq "$TARGET"; then
+                echo "FOUND: $REPO/$FILE"
+                FOUND=$((FOUND + 1))
+              fi
+            done <<< "$RESULT"
+
+          done < repos.txt
+
+          echo ""
+          echo "================================"
+          echo "Total matching files: $FOUND"
+          echo "================================"
