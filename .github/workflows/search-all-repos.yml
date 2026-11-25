@@ -1,5 +1,5 @@
 
-name: Search All Repositories for Carrd Link
+name: Search All Repositories
 
 on:
   workflow_dispatch:
@@ -20,17 +20,20 @@ jobs:
           gh repo list --limit 1000 --json nameWithOwner \
             --jq '.[].nameWithOwner' > repos.txt
 
-          FOUND=0
+          TOTAL_REPOS=0
+          TOTAL_FILES=0
 
           while IFS= read -r REPO; do
-            echo ""
-            echo "Scanning: $REPO"
+            [ -z "$REPO" ] && continue
 
-            RESULT=$(gh api \
-              -H "Accept: application/vnd.github+json" \
+            TOTAL_REPOS=$((TOTAL_REPOS + 1))
+
+            TREE=$(gh api \
               "/repos/$REPO/git/trees/HEAD?recursive=1" \
               --jq '.tree[] | select(.type == "blob") | .path' \
               2>/dev/null || true)
+
+            MATCHES=""
 
             while IFS= read -r FILE; do
               [ -z "$FILE" ] && continue
@@ -41,14 +44,21 @@ jobs:
                 2>/dev/null || true)
 
               if printf '%s' "$CONTENT" | grep -Fq "$TARGET"; then
-                echo "FOUND: $REPO/$FILE"
-                FOUND=$((FOUND + 1))
+                MATCHES="${MATCHES}  - $FILE"$'\n'
+                TOTAL_FILES=$((TOTAL_FILES + 1))
               fi
-            done <<< "$RESULT"
+            done <<< "$TREE"
+
+            if [ -n "$MATCHES" ]; then
+              echo ""
+              echo "Repository: $REPO"
+              printf '%s' "$MATCHES"
+            fi
 
           done < repos.txt
 
           echo ""
           echo "================================"
-          echo "Total matching files: $FOUND"
+          echo "Total repositories scanned: $TOTAL_REPOS"
+          echo "Total matching files: $TOTAL_FILES"
           echo "================================"
